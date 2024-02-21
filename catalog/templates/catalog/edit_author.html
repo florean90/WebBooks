@@ -1,0 +1,18 @@
+{% extends "catalog/base_generic.html" %}
+
+{% block content %}
+    <h3>Edit author:</h3>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <p><label for="first_name">Change the first name:</label><br>
+            <input type="text" name="first_name" value="{{ author.first_name }}"></p>
+        <p><label for="last_name">Change the last name:</label><br>
+            <input type="text" name="last_name" value="{{ author.last_name }}"></p>
+        <p><label for="date_of_birth">Change the date of birth:</label><br>
+            <input type="date" name="date_of_birth" value="{{ author.date_of_birth|date:'Y-m-d' }}"></p>
+        <p><label for="date_of_death">Change the date of death:</label><br>
+            <input type="date" name="date_of_death" value="{{ author.date_of_death|date:'Y-m-d'  }}"></p>
+        <input type="submit" value="Save">
+    </form>
+
+{% endblock %}

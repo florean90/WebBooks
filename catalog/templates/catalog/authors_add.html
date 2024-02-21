@@ -1,0 +1,33 @@
+{% extends "catalog/base_generic.html" %}
+
+{% block content %}
+    <h1>List of the authors</h1>
+    <table>
+        <thead>
+            <th>Id</th><th>First name</th><th>Last name</th>
+        </thead>
+        {% if author %}
+            {% for author in author.all %}
+                <tr>
+                    <td>{{ author.id }}</td>
+                    <td>{{ author.first_name }}</td>
+                    <td>{{ author.last_name }}</td>
+                    <td><a href="/edit_author/{{ author.id }}">Edit</a>,
+                        <a href="/delete_author/{{ author.id }}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <p>There are no authors in the database</p>
+        {% endif %}
+    </table>
+
+    <h3>Add authors to the database</h3>
+    <form method="POST" action="/create_author/">
+        {% csrf_token %}
+        <table>
+            {{ form }}
+        </table>
+        <input type="submit" value="Save">
+    </form>
+
+{% endblock %}
